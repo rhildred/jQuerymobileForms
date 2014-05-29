@@ -9,4 +9,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <description>JDBC connection</description>
+    <param-name>thedb</param-name>
+    <param-value>jdbc:mysql://localhost/test2?user=root</param-value>
+	</context-param>
 </web-app>
