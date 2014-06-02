@@ -11,7 +11,9 @@ public class Migration extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	public void init() throws ServletException {
-		String sUrl = getServletContext().getInitParameter("the.db");
+		String sUrl = OpenShiftDataSource.getConnectionString(
+				getServletContext().getInitParameter("the.db"));
+		System.out.println("Data Source: " + sUrl);
 		Flyway flyway = new Flyway();
 		flyway.setDataSource(sUrl, null, null);
 		flyway.migrate();

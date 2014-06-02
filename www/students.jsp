@@ -5,7 +5,8 @@
 <%
 
 try{
-	Connection oConnection = OpenShiftDataSource.getConnection(getServletContext().getInitParameter("the.db"));
+	Connection oConnection = OpenShiftDataSource.getConnection(
+			getServletContext().getInitParameter("the.db"));
 	Statement oStmt = oConnection.createStatement();
 	String sSQL = "SELECT * FROM students";
 	ResultSet oRs = oStmt.executeQuery(sSQL);

@@ -15,9 +15,7 @@ public class OpenShiftDataSource {
 	 * @return a connected connection
 	 * @see Connection
 	 */
-	public static Connection getConnection(String sURL)
-			throws ClassNotFoundException, InstantiationException,
-			SQLException, IllegalAccessException {
+	public static String getConnectionString(String sURL){
 		if (System.getenv("OPENSHIFT_MYSQL_DB_HOST") != null) {
 			sURL = String.format("jdbc:mysql://%s/%s?user=%s&password=%s",
 					System.getenv("OPENSHIFT_MYSQL_DB_HOST"),
@@ -25,6 +23,11 @@ public class OpenShiftDataSource {
 					System.getenv("OPENSHIFT_MYSQL_DB_USERNAME"),
 					System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD"));
 		}
+		return sURL;
+	}
+	public static Connection getConnection(String sUrl) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	{
+		String sURL = getConnectionString(sUrl);
 
 		Connection connection = null;
 
