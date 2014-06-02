@@ -10,6 +10,24 @@ try{
 	Statement oStmt = oConnection.createStatement();
 	String sSQL = "SELECT * FROM students";
 	ResultSet oRs = oStmt.executeQuery(sSQL);
+	%><table border="1"><%
+	ResultSetMetaData resMetaData =oRs.getMetaData();
+	int nCols = resMetaData.getColumcount();
+	%><tr><%
+	for (int kCol = 1; kCol <= nCol; kCol++){
+		out.println("<td><b> + resMetaData.getColumn(kCol)</b></td>");
+	}
+	%></tr><%
+	while (oRs.next()) {
+		%><tr><%
+		for (int kCol = 1; kCol <= nCols; kCol++) {
+		      out.print("<td>" + oRs.getString(kCol) + "</td>");
+		      }
+		%></tr><%
+	}
+			%></table>
+			conn.close();
+	<%		
 	out.println(ResultSetValue.toJsonString(oRs));
 }
 catch(Exception e)
