@@ -12,9 +12,9 @@ try{
 	ResultSet oRs = oStmt.executeQuery(sSQL);
 	%><table border="1"><%
 	ResultSetMetaData resMetaData =oRs.getMetaData();
-	int nCols = resMetaData.getColumcount();
+	int nCols = resMetaData.getColumnCount();
 	%><tr><%
-	for (int kCol = 1; kCol <= nCol; kCol++){
+	for (int kCol = 1; kCol <= nCols; kCol++){
 		out.println("<td><b> + resMetaData.getColumn(kCol)</b></td>");
 	}
 	%></tr><%
