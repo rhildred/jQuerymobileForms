@@ -28,7 +28,7 @@ try{
 			%></table>
 			conn.close();
 	<%		
-	out.println(ResultSetValue.toJsonString(oRs));
+	//out.println(ResultSetValue.toJsonString(oRs));
 }
 catch(Exception e)
 {
