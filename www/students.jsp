@@ -5,7 +5,7 @@
 <%
 
 try{
-	Connection oConnection = OpenShiftDataSource.getConnection("jdbc:mysql://localhost/test2?user=root");
+	Connection oConnection = OpenShiftDataSource.getConnection(getServletContext().getInitParameter("the.db"));
 	Statement oStmt = oConnection.createStatement();
 	String sSQL = "SELECT * FROM students";
 	ResultSet oRs = oStmt.executeQuery(sSQL);
@@ -13,7 +13,7 @@ try{
 }
 catch(Exception e)
 {
-	out.println(e.getStackTrace());
+	out.println(e.toString());
 }
 
 
