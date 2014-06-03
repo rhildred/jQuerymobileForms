@@ -5,11 +5,30 @@
 <%
 
 try{
-	Connection oConnection = OpenShiftDataSource.getConnection(getServletContext().getInitParameter("the.db"));
+	Connection oConnection = OpenShiftDataSource.getConnection(
+			getServletContext().getInitParameter("the.db"));
 	Statement oStmt = oConnection.createStatement();
 	String sSQL = "SELECT * FROM students";
 	ResultSet oRs = oStmt.executeQuery(sSQL);
-	out.println(ResultSetValue.toJsonString(oRs));
+	%><table border="1"><%
+	ResultSetMetaData resMetaData =oRs.getMetaData();
+	int nCols = resMetaData.getColumnCount();
+	%><tr><%
+	for (int kCol = 1; kCol <= nCols; kCol++){
+		out.println("<td><b> + resMetaData.getColumn(kCol)</b></td>");
+	}
+	%></tr><%
+	while (oRs.next()) {
+		%><tr><%
+		for (int kCol = 1; kCol <= nCols; kCol++) {
+		      out.print("<td>" + oRs.getString(kCol) + "</td>");
+		      }
+		%></tr><%
+	}
+			%></table>
+			conn.close();
+	<%		
+	//out.println(ResultSetValue.toJsonString(oRs));
 }
 catch(Exception e)
 {
